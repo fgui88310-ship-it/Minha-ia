@@ -9,11 +9,11 @@ RUN curl -fsSL https://ollama.com/install.sh | sh
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm install --omit=dev    # ← mudou aqui (funciona sem package-lock)
 
 COPY . .
 
-# Baixa o modelo pequeno (cabe no plano free)
+# Baixa o modelo pequeno
 RUN ollama pull llama3.2:1b
 
 EXPOSE 3000
